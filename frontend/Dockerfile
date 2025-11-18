@@ -4,15 +4,16 @@ WORKDIR /app
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
+COPY . .
+
+RUN adduser -D -s /bin/sh appuser && chown -R appuser:appuser /app
+USER appuser
 
 RUN npm ci
-
-COPY . .
+RUN npm install http-server
 RUN npm run build
-RUN npm install --global http-server
 
 # Пользователь сервиса
-RUN useradd -m -r appuser && chown -R appuser /app
-USER appuser
+
 
 CMD ["npx", "-y", "http-server", "-p", "3000", "/app/build"]
