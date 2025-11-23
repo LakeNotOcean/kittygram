@@ -121,7 +121,7 @@ jobs:
               docker compose -f docker-compose.production.yml pull && \
               docker compose -f docker-compose.production.yml down && \
               docker compose -f docker-compose.production.yml up -d
-    auto_tests:
+    auto-tests:
       runs-on: ubuntu-latest
       needs: deploy
       steps:
@@ -165,7 +165,7 @@ jobs:
         - tests
         - push-docker-images  
         - deploy
-        - auto_tests
+        - auto-tests
       steps:
         - name: Send Telegram message on commit
           uses: appleboy/telegram-action@master
