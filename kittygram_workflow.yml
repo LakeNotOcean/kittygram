@@ -177,11 +177,10 @@ jobs:
               Repository: ${{ github.repository }}
               Commit: ${{ github.sha }}
               Message: ${{ github.event.head_commit.message }}
-              Status: ${{ job.status }}
               
               Jobs status:
               - Tests: ${{ needs.tests.result }}
               - Push Docker: ${{ needs.push-docker-images.result }}
               - Deploy: ${{ needs.deploy.result }}
-              - Auto Tests: ${{ needs.auto_tests.result }}
+              - Auto Tests: ${{ needs.auto-tests.result }}
           
